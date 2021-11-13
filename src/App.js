@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 import $ from 'jquery'
 
+import MatchingGame from "./components/MatchingGame";
 import Game from './components/Game'
 import SearchForm from './components/SearchForm'
 import SearchResults from './components/SearchResults'
@@ -29,8 +30,8 @@ export default class App extends Component {
   }
 
   //the welcome component has the header/navbar and the button to choose to search is toggled
-    render() {
-      return(
+  render() {
+    return(
         <BrowserRouter>
           <div>
             <Header />
@@ -38,17 +39,19 @@ export default class App extends Component {
 
             <Route exact path="/game" component={Game} />
 
+            <Route exact path="/matching" component={MatchingGame} />
+
             <Route
-             path="/search"
-             render={(props) => <SearchForm {...props} fetchImages={this.fetchImages} />}
+                path="/search"
+                render={(props) => <SearchForm {...props} fetchImages={this.fetchImages} />}
             />
             <Route
-             path="/search"
-             render={(props) => <SearchResults {...props} getResults={this.state.images} />}
+                path="/search"
+                render={(props) => <SearchResults {...props} getResults={this.state.images} />}
             />
           </div>
         </BrowserRouter>
-      )
-    }
+    )
+  }
 
 }
