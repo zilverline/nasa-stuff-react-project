@@ -18,6 +18,7 @@ export default class Game extends Component {
   getGameImage = () => {
     const spaceSearch = ["moon", "earth", "jupiter", "saturn", "pluto", "mars", "venus"]
     let randomSearchItem = spaceSearch[Math.floor(Math.random()*spaceSearch.length)];
+    //changed the way random number is generated.
     let randomNumber = Math.floor(Math.random() * 100);
 
     const url = "https://images-api.nasa.gov/search?q="
