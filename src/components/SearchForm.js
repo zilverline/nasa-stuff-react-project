@@ -19,17 +19,18 @@ class SearchForm extends Component {
   }
 
   searchImages = (query = "") => {
-    fetch(`https://images-api.nasa.gov/search?q=${query}`)
-      .then(response => response.json())
-      .then(json => this.props.handleResults(json.collection.items));
+    if (query.length > 0) {
+      fetch(`https://images-api.nasa.gov/search?q=${query}`)
+        .then(response => response.json())
+        .then(json => this.props.handleResults(json.collection.items));
+    }
   }
 
   render() {
     return (
       <div className="searchcontent">
-        <h3 className="searchtext">Enter a Celestial Term:</h3>
         <form>
-          <input type="text" value={this.state.query} onChange={this.handleInput} />
+          <input type="text" value={this.state.query} onChange={this.handleInput} placeholder='Search for ... (e.g. "Orion")' />
           <button id="searchformbutton" onClick={this.handleSearch}>Search</button>
         </form>
       </div>

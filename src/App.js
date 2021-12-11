@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
-
-import Game from './components/Game'
-import SearchForm from './components/SearchForm'
-
 import './App.css';
-
-import Header from './containers/Header'
-import MainContainer from './containers/MainContainer'
+import Game from './components/Game';
+import Header from './containers/Header';
+import MainContainer from './containers/MainContainer';
+import SearchPage from './pages/SearchPage';
 
 export default class App extends Component {
 
@@ -20,7 +17,7 @@ export default class App extends Component {
 
           <Route exact path="/game" component={Game} />
 
-          <Route path="/search" component={SearchForm} />
+          <Route path="/search" component={SearchPage} />
         </div>
       </BrowserRouter>
     )

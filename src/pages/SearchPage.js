@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import SearchForm from '../components/SearchForm';
 import SearchResults from '../components/SearchResults';
 
@@ -16,10 +16,11 @@ class SearchPage extends Component {
 
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
+        <h1 style={{ textAlign: "center" }}>Search NASA Image and Video Library</h1>
         <SearchForm handleResults={this.handleResults} />
         <SearchResults searchResults={this.state.searchResults} />
-      </Fragment>
+      </React.Fragment>
     )
   }
 }

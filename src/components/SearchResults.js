@@ -1,89 +1,106 @@
 import React, { Component } from 'react';
-import $ from 'jquery'
-
-import moon from './moon.jpg'
-
 
 class SearchResults extends Component {
 
-  state = {
-    images: []
+  constructor(props) {
+    super(props);
+    this.state = { focus: "" }
+    this.handleClickItem = this.handleClickItem.bind(this);
   }
 
-  //The component has loaded and the functions are called - was using this before but not currently
-  componentDidMount() {
-  }
+  renderPreview = (item) => {
+    if (item.links !== undefined && item.links.length > 0) {
+      let media_type = item.data[0].media_type
 
-  //this function helps when presenting the cards - if the title and description are the same, it doesn't show the description
-  sameContent = (a, b) => {
-    if (a === b) {
-      return null
-    } else {
-      return b
-    };
-  }
-
-  // This function determines if an image is present in the object and if not, renders a default image
-  hasImage = (result) => {
-    if (typeof result !== 'undefined') {
-      return result[0].href
-    } else {
-      return moon
+      if (media_type === "image") {
+        return (
+          <div className="preview">
+            <img src={item.links[0].href} alt={item.data[0].title} />
+            <small>{item.data[0].title}</small>
+          </div>
+        )
+      }
+      if (media_type === "video") {
+        return (
+          <div className="preview">
+            <img src={item.links[0].href} alt={item.data[0].title} />
+            <div className="play-btn" />
+            <small>{item.data[0].title}</small>
+          </div>
+        )
+      }
     }
   }
 
-  // This determines if the title exists, much like the function above
-  hasContent = (result) => {
-    if (typeof result !== 'undefined') {
-      return result[0].title
-    } else {
-      return "No content"
-    }
-  };
+  renderData = (data) => {
+    let data_view = {}
 
-  // This determines the HTML to render and the card structure, mapping the images from the state onto each card
-  getResults = (images) => {
+    Object.keys(data).forEach((key) => {
+      let value_view = data[key];
 
-    if (this.props.searchResults.length > 0) {
-      return this.props.searchResults.map(image =>
-        <div className="cardborder">
-          <div className="leftbox">
-            <div className="image"><img src={this.hasImage(image.links)} alt="" /></div>
-          </div>
-          <div className="rightbox">
-            <div className="title">{this.hasContent(image.data)}</div>
-          </div>
-          <div className="clearfix">
-            <div className="bottombox">
-              <div className="desc">
-                {this.sameContent(image.data[0].title, image.data[0].description)}
-              </div>
-            </div>
-          </div>
-          <div className="creator">
-            {image.data[0].secondary_creator}
-          </div>
-        </div>)
-    } else {
-      return this.noResults()
-    }
-  }
+      if (Array.isArray(data[key])) {
+        value_view = data[key].join(", ");
+      }
 
-  //A function to help show a message when the search term returns no results
-  noResults = () => {
-    return <div className="noresult">no results yet</div>
-  };
+      data_view[key] = (
+        <p>
+          <label>{key}:</label>
+          <span>{value_view}</span>
+        </p>
+      )
+    });
 
-  //The Search field is rendered and the results are presented.
-  render() {
     return (
-      <div className="searchstuff">
-        {this.getResults()}
-      </div>
-    );
-  };
+      <React.Fragment>
+        <h3>{data.title}</h3>
+        {data_view["nasa_id"]}
+        {data_view["keywords"]}
+        {data_view["center"]}
+        {data_view["secondary_creator"]}
+        {data_view["date_created"]}
+        <div className="description">{data.description}</div>
+        <a className="details-link" href={"https://images.nasa.gov/details-" + data["nasa_id"]} target="_blank">View more details</a>
+      </React.Fragment>
+    )
+  }
 
+  handleClickItem = (event, id) => {
+    if (event.target.className === "details-link") {
+      return;
+    }
+
+    if (this.state.focus !== id) {
+      this.setState({ focus: id });
+    } else {
+      this.setState({ focus: id + "unfocus" });
+    }
+  }
+
+  render() {
+    let searchResults = this.props.searchResults;
+
+    if (searchResults.length > 0) {
+      return (
+        <div className="searchresults">
+          {searchResults.map(item => (
+            <React.Fragment key={item.href}>
+              <div className={`card card-${item.data[0].media_type}`} onClick={(event) => this.handleClickItem(event, item.href)}>
+                {this.renderPreview(item)}
+                <div className="card-details" style={{ display: this.state.focus === item.href ? "inline-block" : "none" }}>
+                  {this.renderData(item.data[0])}
+                </div>
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
+      )
+    } else {
+      return (
+        <div className="noresult">no results yet</div>
+      )
+    }
+  };
 
 }
 
-export default SearchResults
+export default SearchResults;
