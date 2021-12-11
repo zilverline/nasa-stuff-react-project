@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
-import SearchResults from './SearchResults';
 
 class SearchForm extends Component {
-  state = {
-    query: "",
-    images: []
+
+  constructor(props) {
+    super(props);
+    this.state = { query: "" }
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   handleSearch = (event) => {
     event.preventDefault();
-    this.fetchImages(this.state.query);
+    this.searchImages(this.state.query);
   }
 
   handleInput = (event) => {
     this.setState({ query: event.target.value });
   }
 
-  //The NASA API is called and then the results go to the state
-  fetchImages = (query = "") => {
+  searchImages = (query = "") => {
     fetch(`https://images-api.nasa.gov/search?q=${query}`)
       .then(response => response.json())
-      .then(json => this.setState({ ...this.state, images: json.collection.items }));
+      .then(json => this.props.handleResults(json.collection.items));
   }
 
-  // Renders a form to search
   render() {
     return (
       <div className="searchcontent">
@@ -32,10 +32,9 @@ class SearchForm extends Component {
           <input type="text" value={this.state.query} onChange={this.handleInput} />
           <button id="searchformbutton" onClick={this.handleSearch}>Search</button>
         </form>
-        <SearchResults getResults={this.state.images} />
       </div>
     )
   };
 }
 
-export default SearchForm
+export default SearchForm;

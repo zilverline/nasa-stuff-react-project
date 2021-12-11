@@ -44,8 +44,8 @@ class SearchResults extends Component {
   // This determines the HTML to render and the card structure, mapping the images from the state onto each card
   getResults = (images) => {
 
-    if (this.props.getResults.length > 0) {
-      return this.props.getResults.map(image =>
+    if (this.props.searchResults.length > 0) {
+      return this.props.searchResults.map(image =>
         <div className="cardborder">
           <div className="leftbox">
             <div className="image"><img src={this.hasImage(image.links)} alt="" /></div>
