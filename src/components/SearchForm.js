@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-class SearchForm extends Component {
 
+class SearchForm extends Component {
   state = {
     query: ""
   }
@@ -13,11 +13,8 @@ class SearchForm extends Component {
     this.props.fetchImages(this.state.query)
   }
 
-
-
   // Renders a form to search
   render() {
-
     return (
       <div className="searchcontent">
         <h3 className="searchtext">Enter a Celestial Term:</h3>

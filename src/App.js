@@ -1,54 +1,37 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from "react-router-dom";
-import $ from 'jquery'
-
-import Game from './components/Game'
-import SearchForm from './components/SearchForm'
-import SearchResults from './components/SearchResults'
+import React, {Component} from 'react';
+import {BrowserRouter, Route} from "react-router-dom";
 
 import './App.css';
 
-import Header from './containers/Header'
-import MainContainer from './containers/MainContainer'
+import Game from './components/Game'
+import Header from './components/Header'
+import LandingPage from './components/LandingPage'
+import SearchContainer from "./components/SearchContainer";
 
 export default class App extends Component {
+    state = {}
+    setAppState = (attribute, newValue) => {
+        let currentState = {...this.state}
+        currentState[attribute] = newValue
+        this.setState(currentState)
+    }
 
-  state = {
-    images: []
-  }
-
-
-
-//The NASA API is called and then the results go to the state
-  fetchImages = (query = "") => {
-    $.ajax({
-      url: `https://images-api.nasa.gov/search?q=${query}`
-    }).then(json => {
-      this.setState({ images: json.collection.items })
-    })
-  }
-
-  //the welcome component has the header/navbar and the button to choose to search is toggled
+    //the welcome component has the header/navbar and the button to choose to search is toggled
     render() {
-      return(
-        <BrowserRouter>
-          <div>
-            <Header />
-            <Route exact path="/" component={MainContainer} />
+        return (
+            <BrowserRouter>
+                <div>
+                    <Header/>
+                    <Route exact path="/" component={LandingPage}/>
+                    <Route exact path="/game" component={Game}/>
+                    <Route
+                        path="/search"
+                        render={(props) => <SearchContainer images={this.state.images} setAppState={this.setAppState}/>}
+                    />
 
-            <Route exact path="/game" component={Game} />
-
-            <Route
-             path="/search"
-             render={(props) => <SearchForm {...props} fetchImages={this.fetchImages} />}
-            />
-            <Route
-             path="/search"
-             render={(props) => <SearchResults {...props} getResults={this.state.images} />}
-            />
-          </div>
-        </BrowserRouter>
-      )
+                </div>
+            </BrowserRouter>
+        )
     }
 
 }
