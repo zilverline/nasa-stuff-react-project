@@ -2,9 +2,11 @@
   display: flex;
   width: 100%;
   padding: 10px 15px;
-  background: #32567a;
+  background-color: #32567a;
+  box-shadow: 0 0 4px 4px #32567a;
   box-sizing: border-box;
   align-items: center;
+  z-index: 1;
 }
 
 #home-btn {
@@ -24,7 +26,7 @@
 
 #nav-buttons {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   align-items: center;
 }
 

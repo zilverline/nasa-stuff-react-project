@@ -1,8 +1,30 @@
 #card-container {
   display: flex;
   flex-direction: column;
-  color: #202020;
-  background-color: #FFFFFF;
+  gap: 10px;
+  width: 210px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px;
+  color: #FFFFFF;
+  background-color: #32567a;
+  border-radius: 8px;
   justify-content: center;
   align-items: center;
+  transition: all 0.4s ease;
+}
+
+#card-container:hover {
+  transform: scale(1.05);
+}
+
+#card-img {
+  width: 100px;
+  margin-bottom: 24px;
+}
+
+#card-subtext {
+  text-align: center;
+  font-size: 14px;
+  font-weight: normal;
 }
