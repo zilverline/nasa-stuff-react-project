@@ -13,10 +13,25 @@ import game from '../images/game.svg'
  */
 export default class Header extends PureComponent {
 
+  /** Initial state */
+  state = {
+    selected: '',
+  }
+
+  /** Called after first render */
+  componentDidMount() {
+    const path = window.location.pathname
+    if (path === '/search') {
+      this.setState({ selected: 'search' })
+    } else if (path === '/game') {
+      this.setState({ selected: 'game' })
+    }
+  }
+
   /** Render the header navigation bar */
   render() {
     return <div id='header'>
-      <Link id='home-btn' to='/'>
+      <Link id='home-btn' to='/' onClick={_ => this.setState({ selected: '' })}>
         <img id='logo' alt='NASA: The Game' src={logo} />
         NASA: The Game
       </Link>
@@ -24,8 +39,8 @@ export default class Header extends PureComponent {
       <div className='horizontal-spacer' />
 
       <div id='nav-buttons'>
-        <Button to='/search' icon={search} text='Search' />
-        <Button to='/game' icon={game} text='Game' />
+        <Button to='/search' icon={search} text='Search' isSelected={this.state.selected === 'search'} onClick={_ => this.setState({ selected: 'search' })} />
+        <Button to='/game' icon={game} text='Game' isSelected={this.state.selected === 'game'} onClick={_ => this.setState({ selected: 'game' })} />
       </div>
     </div>
   }
