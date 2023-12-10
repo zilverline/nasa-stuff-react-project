@@ -92,8 +92,9 @@ export default class Game extends PureComponent {
       }
 
       // Choose random image of the chosen planet
-      const randomIndex = Math.floor(Math.random() * json.collection.items.length);
-      const image = json.collection.items[randomIndex].links[0].href;
+      const items = json.collection.items.filter(item => !!item?.links[0]);
+      const randomIndex = Math.floor(Math.random() * items.length);
+      const image = items[randomIndex].links[0].href;
       this.setState({ image });
     } catch (err) {
       // Use Earth as backup

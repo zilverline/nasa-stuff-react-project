@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 
 import '../css/Search.css'
+import SearchResult from '../components/SearchResult';
 
 /**
  * Search page, where the user can search for images of planets.
@@ -10,7 +11,9 @@ export default class Search extends PureComponent {
   /** Initial state */
   state = {
     loading: false,
+    hasSearched: false,
     query: '',
+    page: 1,
   }
 
   /** Results after the user query has completed */
@@ -22,6 +25,7 @@ export default class Search extends PureComponent {
   async fetchImages() {
     const search = this.state.query.trim()
     if (!search) {
+      this.setState({ hasSearched: false })
       return
     }
 
@@ -40,13 +44,15 @@ export default class Search extends PureComponent {
         throw new Error('Received invalid response, no items property found.');
       }
 
-      this.results = json.collection.items
+      // Remove any results that have no images
+      this.results = json.collection.items.filter(item => !!item?.links?.[0])
     } catch (err) {
       this.results = []
       console.error(`Something went wrong while fetching images using query "${search}".`, err);
     }
 
-    this.setState({ loading: false })
+    this.setState({ hasSearched: true, loading: false })
+    console.log('== results', this.results)
   }
 
   onSearchChange = evt => {
@@ -75,6 +81,21 @@ export default class Search extends PureComponent {
     return <div>
       <h1>Search the NASA image database</h1>
       <input type='text' value={this.state.query} onChange={this.onSearchChange} />
+
+      { this.state.hasSearched
+        ? <div>
+            { this.results.length > 0
+              ? <>
+                <p>Found {this.results.length} results.</p>
+                <div id='search-results-container'>
+                  { this.results.map(result => <SearchResult key={result.data[0].nasa_id} result={result} />) }
+                </div>
+              </>
+              : <p>No results found.</p>
+            }
+          </div>
+        : null
+      }
     </div>
   }
 

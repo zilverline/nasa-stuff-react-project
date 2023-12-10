@@ -1,0 +1,22 @@
+#result-container {
+  display: flex;
+  width: 500px;
+  height: 305px;
+  gap: 10px;
+  background-color: #32567a;
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#result-container > img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+#result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
