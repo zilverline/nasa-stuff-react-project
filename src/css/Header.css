@@ -1,0 +1,48 @@
+#header {
+  display: flex;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #202020;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+#home-btn {
+  display: flex;
+  gap: 7px;
+  color: #FFFFFF;
+  font-size: 24px;
+  text-decoration: none;
+  align-items: center;
+  cursor: pointer;
+}
+
+#logo {
+  width: 40px;
+  height: 40px;
+}
+
+#nav-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.horizontal-spacer {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 768px) {
+  #home-btn {
+    font-size: 18px;
+  }
+
+  #logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  #nav-buttons {
+    gap: 12px;
+  }
+}

@@ -1,0 +1,13 @@
+{
+	"PLANETS": {
+		"MERCURY": "Mercurius",
+		"VENUS": "Venus",
+		"EARTH": "Aarde",
+		"MARS": "Mars",
+		"JUPITER": "Jupiter",
+		"SATURN": "Saturnus",
+		"URANUS": "Uranus",
+		"NEPTUNE": "Neptunus",
+		"PLUTO": "Pluto"
+	}
+}

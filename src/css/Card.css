@@ -1,0 +1,8 @@
+#card-container {
+  display: flex;
+  flex-direction: column;
+  color: #202020;
+  background-color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+}
