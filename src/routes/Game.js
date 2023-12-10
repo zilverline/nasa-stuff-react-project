@@ -75,7 +75,6 @@ export default class Game extends PureComponent {
       name: planet.name,
       localized: i18n('PLANETS.' + planet.name.toUpperCase()),
     }
-    console.log('== chose planet', planet.name)
 
     try {
       const response = await fetch(`https://images-api.nasa.gov/search?q=${planet.name}`);
