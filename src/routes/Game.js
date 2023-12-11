@@ -3,6 +3,7 @@ import { i18n } from '../locales/i18n';
 
 import '../css/Game.css'
 import Option from '../components/Option';
+import eventBus from '../eventBus';
 
 /**
  * Game page, where the user has to guess which planet is shown in the image.
@@ -13,16 +14,18 @@ export default class Game extends PureComponent {
   state = {
     image: '',
     loading: true,
+    hasImageLoaded: false,
     isCorrect: false,
-    resultTitle: '',
-    resultText: '',
+    hasGuessed: false,
   }
 
   /** Planet that has been chosen by the app */
   correct = {
     name: 'Earth',
     icon: require('../images/earth.svg'),
-    localized: i18n('PLANETS.EARTH'),
+    get localized() {
+      return i18n('PLANETS.EARTH')
+    },
   }
 
   /** List of planets that are available to choose from */
@@ -30,60 +33,89 @@ export default class Game extends PureComponent {
     {
       name: 'Mercury',
       icon: require('../images/mercury.svg'),
-      localized: i18n('PLANETS.MERCURY'),
+      get localized() {
+        return i18n('PLANETS.MERCURY')
+      },
     },
     {
       name: 'Venus',
       icon: require('../images/venus.svg'),
-      localized: i18n('PLANETS.VENUS'),
+      get localized() {
+        return i18n('PLANETS.VENUS')
+      },
     },
     {
       name: 'Earth',
       icon: require('../images/earth.svg'),
-      localized: i18n('PLANETS.EARTH'),
+      get localized() {
+        return i18n('PLANETS.EARTH')
+      },
     },
     {
       name: 'Mars',
       icon: require('../images/mars.svg'),
-      localized: i18n('PLANETS.MARS'),
+      get localized() {
+        return i18n('PLANETS.MARS')
+      },
     },
     {
       name: 'Jupiter',
       icon: require('../images/jupiter.svg'),
-      localized: i18n('PLANETS.JUPITER'),
+      get localized() {
+        return i18n('PLANETS.JUPITER')
+      },
     },
     {
       name: 'Saturn',
       icon: require('../images/saturn.svg'),
-      localized: i18n('PLANETS.SATURN'),
+      get localized() {
+        return i18n('PLANETS.SATURN')
+      },
     },
     {
       name: 'Uranus',
       icon: require('../images/uranus.svg'),
-      localized: i18n('PLANETS.URANUS'),
+      get localized() {
+        return i18n('PLANETS.URANUS')
+      },
     },
     {
       name: 'Neptune',
       icon: require('../images/neptune.svg'),
-      localized: i18n('PLANETS.NEPTUNE'),
+      get localized() {
+        return i18n('PLANETS.NEPTUNE')
+      },
     }
   ]
 
   /** Called after first render */
   componentDidMount() {
+    eventBus.addListener('lang-change', this.onLanguageChange)
     this.startGame();
+  }
+
+  /** Called after first mount */
+  componentWillUnmount() {
+    eventBus.removeListener('lang-change', this.onLanguageChange)
+  }
+
+  /** Called when we change the language */
+  onLanguageChange = _ => {
+    this.forceUpdate()
   }
 
   /** Starts the game by choosing a planet image */
   async startGame() {
-    this.setState({ loading: true, image: '', isCorrect: false, resultTitle: '', resultText: '' });
+    this.setState({ loading: true, hasImageLoaded: false, image: '', isCorrect: false, hasGuessed: false });
 
     // Choose a random planet from our list
     const planet = this.planets[Math.floor(Math.random() * this.planets.length)];
     this.correct = {
       name: planet.name,
       icon: planet.icon,
-      localized: i18n('PLANETS.' + planet.name.toUpperCase()),
+      get localized() {
+        return i18n('PLANETS.' + planet.name.toUpperCase())
+      },
     }
 
     try {
@@ -110,7 +142,10 @@ export default class Game extends PureComponent {
       // Use Earth as backup
       this.correct = {
         name: 'Earth',
-        localized: i18n('PLANETS.EARTH'),
+        icon: require('../images/earth.svg'),
+        get localized() {
+          return i18n('PLANETS.EARTH')
+        },
       }
       this.setState({ image: require('../images/earth.jpg') });
       console.error('Something went wrong while finding a planet image.', err);
@@ -121,18 +156,13 @@ export default class Game extends PureComponent {
 
   /** Called when the user has guess a planet */
   onGuessSelect = planet => {
-    if (planet !== this.correct.name || planet !== this.correct.localized) {
-      this.setState({ isCorrect: false, resultTitle: i18n('TEXT.INCORRECT'), resultText: 'Correct planet is ' + this.correct.localized });
-      return
-    }
-
-    this.setState({ isCorrect: true, resultTitle: i18n('TEXT.CORRECT'), resultText: '' })
+    this.setState({ hasGuessed: true, isCorrect: planet === this.correct.name || planet === this.correct.localized })
   }
 
   /** Renders an intermediate loading UI while the image is being fetched */
   renderLoading() {
     return <div>
-      Finding image...
+      <img id='guess-img-loading' src={require('../images/loading.svg')} alt='Loading' />
     </div>
   }
 
@@ -140,7 +170,10 @@ export default class Game extends PureComponent {
   renderResult() {
     return <>
       <div id='guess-result-title' style={{ color: this.state.isCorrect ? '#25cb25' : '#d91212' }}>
-        { this.state.resultTitle }
+        { this.state.isCorrect
+          ? i18n('TEXT.CORRECT')
+          : i18n('TEXT.INCORRECT')
+        }
       </div>
 
       { this.state.isCorrect
@@ -150,20 +183,21 @@ export default class Game extends PureComponent {
         </div>
       }
 
-      <Option text='Play Again' value='Play Again' onSelect={_ => this.startGame()} />
+      <Option icon={require('../images/replay.svg')} text={i18n('TEXT.PLAY_AGAIN')} value={i18n('TEXT.PLAY_AGAIN')} onSelect={_ => this.startGame()} />
     </>
   }
 
   /** Renders the guessing part of the game */
   renderGuessing() {
     return <div id='guess-container'>
-      <img id='guess-img' src={this.state.image} alt='Planet' style={{ width: this.state.resultTitle ? 200 : 400 }} />
+      <img id='guess-img-loading' src={require('../images/loading.svg')} alt='Loading' style={{ display: this.state.hasImageLoaded ? 'none' : 'block' }} />
+      <img id='guess-img' src={this.state.image} alt='Planet' onLoad={_ => this.setState({ hasImageLoaded: true })} style={{ display: this.state.hasImageLoaded ? 'block' : 'none' }} />
 
-      { this.state.resultTitle
+      { this.state.hasGuessed
         ? this.renderResult()
         : <div id='guess-planets'>
           { this.planets.map(info => {
-            return <Option key={info.name} icon={info.icon} text={info.localized} value={info.name} onSelect={this.onGuessSelect} />
+            return <Option key={info.name} icon={info.icon} text={info.name} value={info.localized} onSelect={this.onGuessSelect} />
           })}
         </div>
       }

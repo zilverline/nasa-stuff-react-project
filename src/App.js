@@ -8,6 +8,9 @@ import Home from './routes/Home';
 import Search from './routes/Search';
 import Game from './routes/Game';
 
+/**
+ * Main app.
+ */
 export default class App extends PureComponent {
 
   /** Renders the app UI */
@@ -16,7 +19,7 @@ export default class App extends PureComponent {
       <Header />
 
       <div id='content'>
-        <img id='content-background' src={require('./images/background.jpg')} alt='Stars' />
+        <img id='content-background' draggable='false' src={require('./images/background.jpg')} alt='Stars' />
 
         <Routes>
           <Route path='/' element={<Home />} />

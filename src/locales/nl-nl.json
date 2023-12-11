@@ -1,8 +1,14 @@
 {
+	"TITLE": {
+		"TEXT": "NASA: Het Spel"
+	},
 	"TEXT": {
 		"CORRECT": "U hebt gelijk",
 		"CORRECT_TEXT": "Juiste planeet is",
-		"INCORRECT": "U hebt ongelijk"
+		"INCORRECT": "U hebt ongelijk",
+		"SEARCH": "Zoeken",
+		"GAME": "Spel",
+		"PLAY_AGAIN": "Speel Opnieuw"
 	},
 	"PLANETS": {
 		"MERCURY": "Mercurius",

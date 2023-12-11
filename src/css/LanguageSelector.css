@@ -1,0 +1,32 @@
+#lang-container {
+  display: flex;
+  gap: 10px;
+  margin-left: 30px;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 1.1rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+#lang-flag {
+  width: 24px;
+  height: 24px;
+  user-select: none;
+}
+
+#lang-text {
+  display: block;
+  width: 26px;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  #lang-container {
+    margin-left: 20px;
+  }
+
+  #lang-text {
+    display: none;
+  }
+}

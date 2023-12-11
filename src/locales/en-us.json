@@ -1,8 +1,14 @@
 {
+	"TITLE": {
+		"TEXT": "NASA: The Game"
+	},
 	"TEXT": {
 		"CORRECT": "Correct",
 		"CORRECT_TEXT": "Correct planet is",
-		"INCORRECT": "Incorrect"
+		"INCORRECT": "Incorrect",
+		"SEARCH": "Search",
+		"GAME": "Game",
+		"PLAY_AGAIN": "Play Again"
 	},
 	"PLANETS": {
 		"MERCURY": "Mercury",

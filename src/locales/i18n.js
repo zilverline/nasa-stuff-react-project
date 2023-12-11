@@ -7,17 +7,17 @@ let localeName = "en-us"
  * @param {string} name Name of the locale to set to.
  */
 export function setLocale(name) {
-    if (!name || typeof name != 'string') {
-        console.warn('Failed to set locale, no name given.')
-        return
-    }
+  if (!name || typeof name != 'string') {
+    console.warn('Failed to set locale, no name given.')
+    return
+  }
 
-    name = name.toLowerCase()
-    if (name === 'nl-be') {
-        name = 'nl-nl'
-    }
+  name = name.toLowerCase()
+  if (name === 'nl-be') {
+    name = 'nl-nl'
+  }
 
-    localeName = name
+  localeName = name
 }
 
 /**
@@ -26,17 +26,17 @@ export function setLocale(name) {
  * @returns {string} Internationalized string.
  */
 export function i18n(key) {
-    let value = locales[localeName] || locales['en-us']
+  let value = locales[localeName] || locales['en-us']
 
-    // Traverse "." to get value
-    for (let keyPart of key.split(".")) {
-        value = value[keyPart]
+  // Traverse "." to get value
+  for (let keyPart of key.split(".")) {
+    value = value[keyPart]
 
-        // No value found
-        if (value == null) {
-            return key
-        }
+    // No value found
+    if (value == null) {
+      return key
     }
+  }
 
-    return value
+  return value
 }

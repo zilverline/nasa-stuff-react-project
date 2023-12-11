@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 
 import '../css/Search.css'
 import SearchResult from '../components/SearchResult';
+import eventBus from '../eventBus';
 
 /**
  * Search page, where the user can search for images of planets.
@@ -20,6 +21,21 @@ export default class Search extends PureComponent {
 
   /** Timeout used to delay fetching images from NASA API until user finishes typing */
   _loadingTimer = null
+
+  /** Called after first mount */
+  componentDidMount() {
+    eventBus.addListener('lang-change', this.onLanguageChange)
+  }
+
+  /** Called after first mount */
+  componentWillUnmount() {
+    eventBus.removeListener('lang-change', this.onLanguageChange)
+  }
+
+  /** Called when we change the language */
+  onLanguageChange = _ => {
+    this.forceUpdate()
+  }
 
   async fetchImages() {
     const search = this.state.query.trim()
