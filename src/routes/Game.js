@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { i18n } from '../locales/i18n';
 
 import '../css/Game.css'
-import earth from '../images/earth.jpg'
 import Option from '../components/Option';
 
 /**
@@ -55,10 +54,6 @@ export default class Game extends PureComponent {
     {
       name: 'Neptune',
       localized: i18n('PLANETS.NEPTUNE'),
-    },
-    {
-      name: 'Pluto',
-      localized: i18n('PLANETS.PLUTO'),
     }
   ]
 
@@ -92,7 +87,7 @@ export default class Game extends PureComponent {
       }
 
       // Choose random image of the chosen planet
-      const items = json.collection.items.filter(item => !!item?.links[0]);
+      const items = json.collection.items.filter(item => !!item?.links?.[0]);
       const randomIndex = Math.floor(Math.random() * items.length);
       const image = items[randomIndex].links[0].href;
       this.setState({ image });
@@ -102,7 +97,7 @@ export default class Game extends PureComponent {
         name: 'Earth',
         localized: i18n('PLANETS.EARTH'),
       }
-      this.setState({ image: earth });
+      this.setState({ image: require('../images/earth.jpg') });
       console.error('Something went wrong while finding a planet image.', err);
     }
 
