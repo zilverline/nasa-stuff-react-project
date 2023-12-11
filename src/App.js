@@ -16,6 +16,8 @@ export default class App extends PureComponent {
       <Header />
 
       <div id='content'>
+        <img id='content-background' src={require('./images/background.jpg')} alt='Stars' />
+
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/search' element={<Search />} />

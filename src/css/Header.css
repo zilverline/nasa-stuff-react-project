@@ -2,8 +2,7 @@
   display: flex;
   width: 100%;
   padding: 10px 15px;
-  background-color: #32567a;
-  box-shadow: 0 0 4px 4px #32567a;
+  background-color: #000000;
   box-sizing: border-box;
   align-items: center;
   z-index: 1;
@@ -13,7 +12,8 @@
   display: flex;
   gap: 7px;
   color: #FFFFFF;
-  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: 800;
   text-decoration: none;
   align-items: center;
   cursor: pointer;

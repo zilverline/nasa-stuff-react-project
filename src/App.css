@@ -1,9 +1,23 @@
 #content {
   width: 100%;
   height: 100%;
-  color: #FFFFFF;
-  background-color: #1b1b1b;
   padding: 20px 15px;
+  color: #FFFFFF;
+  background-color: #000000;
   box-sizing: border-box;
   overflow: hidden auto;
+}
+
+#content-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('images/background.jpg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.16);
+  z-index: 0;
 }

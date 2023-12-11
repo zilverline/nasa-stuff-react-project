@@ -13,7 +13,6 @@ export default class Search extends PureComponent {
     loading: false,
     hasSearched: false,
     query: '',
-    page: 1,
   }
 
   /** Results after the user query has completed */
@@ -78,7 +77,7 @@ export default class Search extends PureComponent {
 
   /** Render a way for the user to search for a NASA image */
   render() {
-    return <div>
+    return <div id='search-container'>
       <h1>Search the NASA image database</h1>
       <input type='text' value={this.state.query} onChange={this.onSearchChange} />
 

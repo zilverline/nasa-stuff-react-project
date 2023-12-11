@@ -14,14 +14,14 @@ export default class Option extends PureComponent {
   }
 
   render() {
-    return <div id='option-container' onClick={this.onSelect}>
+    return <button id='option-container' onClick={this.onSelect}>
       { this.props.icon
         ? <img src={this.props.icon} alt={this.props.value} />
         : null
       }
 
       { this.props.value }
-    </div>
+    </button>
   }
 
 }
