@@ -183,7 +183,7 @@ export default class Game extends PureComponent {
         </div>
       }
 
-      <Option icon={require('../images/replay.svg')} text={i18n('TEXT.PLAY_AGAIN')} value={i18n('TEXT.PLAY_AGAIN')} onSelect={_ => this.startGame()} />
+      <Option icon={require('../images/replay.svg')} text={i18n('TEXT.PLAY_AGAIN')} value={i18n('TEXT.PLAY_AGAIN')} useRawIcon={false} onSelect={_ => this.startGame()} />
     </>
   }
 

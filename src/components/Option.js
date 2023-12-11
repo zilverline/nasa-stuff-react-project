@@ -7,6 +7,11 @@ import '../css/Option.css';
  */
 export default class Option extends PureComponent {
 
+  /** Initial state */
+  state = {
+    isHovering: false,
+  }
+
   /** Called when the user selects this option */
   onSelect = () => {
     if (!this.props.onSelect || typeof this.props.onSelect !== 'function') {
@@ -19,9 +24,13 @@ export default class Option extends PureComponent {
 
   /** Renders the option UI */
   render() {
-    return <button className='option-container' onClick={this.onSelect}>
+    const useRawIcon = this.props.useRawIcon ?? true
+
+    return <button className='option-container' onClick={this.onSelect} onPointerOver={_ => this.setState({ isHovering: true })} onPointerOut={_ => this.setState({ isHovering: false })}>
       { this.props.icon
-        ? <img className='option-img' src={this.props.icon} alt={this.props.value} />
+        ? useRawIcon
+          ? <img className='option-img' src={this.props.icon} alt={this.props.value} />
+          : <div className='option-img' style={{ backgroundColor: this.state.isHovering ? '#000000' : '#FFFFFF', maskImage: `url(${this.props.icon})`, maskPosition: 'center', maskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskImage: `url(${this.props.icon})`, WebkitMaskPosition: 'center', WebkitMaskSize: 'contain', WebkitMaskRepeat: 'no-repeat' }} />
         : null
       }
 
