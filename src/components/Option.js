@@ -2,8 +2,12 @@ import React, { PureComponent } from 'react';
 
 import '../css/Option.css';
 
+/**
+ * A single option that is choosable.
+ */
 export default class Option extends PureComponent {
 
+  /** Called when the user selects this option */
   onSelect = () => {
     if (!this.props.onSelect || typeof this.props.onSelect !== 'function') {
       return;
@@ -13,10 +17,11 @@ export default class Option extends PureComponent {
     this.props.onSelect(this.props.text);
   }
 
+  /** Renders the option UI */
   render() {
-    return <button id='option-container' onClick={this.onSelect}>
+    return <button className='option-container' onClick={this.onSelect}>
       { this.props.icon
-        ? <img src={this.props.icon} alt={this.props.value} />
+        ? <img className='option-img' src={this.props.icon} alt={this.props.value} />
         : null
       }
 

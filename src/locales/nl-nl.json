@@ -1,4 +1,9 @@
 {
+	"TEXT": {
+		"CORRECT": "U hebt gelijk",
+		"CORRECT_TEXT": "Juiste planeet is",
+		"INCORRECT": "U hebt ongelijk"
+	},
 	"PLANETS": {
 		"MERCURY": "Mercurius",
 		"VENUS": "Venus",

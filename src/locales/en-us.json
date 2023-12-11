@@ -1,4 +1,9 @@
 {
+	"TEXT": {
+		"CORRECT": "Correct",
+		"CORRECT_TEXT": "Correct planet is",
+		"INCORRECT": "Incorrect"
+	},
 	"PLANETS": {
 		"MERCURY": "Mercury",
 		"VENUS": "Venus",

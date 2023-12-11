@@ -1,12 +1,22 @@
-#option-container {
+.option-container {
   display: flex;
   gap: 7px;
   width: fit-content;
   color: #FFFFFF;
   font-size: 1rem;
-  padding: 10px 15px;
+  padding: 5px 15px 5px 10px;
   border: 1px solid #FFFFFF;
   background-color: transparent;
   align-items: center;
   cursor: pointer;
+}
+
+.option-img {
+  width: 32px;
+  height: 32px;
+}
+
+.option-container:hover {
+  color: #000000;
+  background-color: #FFFFFF;
 }
