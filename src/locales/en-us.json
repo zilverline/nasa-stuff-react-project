@@ -5,9 +5,12 @@
 	"SEARCH": {
 		"TEXT": "Search",
 		"SUBTEXT": "Search for images from the NASA database.",
-		"ANYTHING": "Search for anything",
+		"ANYTHING": "Search for anything...",
+		"SEARCHING": "Searching...",
 		"NO_RESULTS": "No results found.",
-		"FOUND": "Found {0} results."
+		"FOUND": "Found {0} results.",
+		"EXPAND": "Expand",
+		"COLLAPSE": "Collapse"
 	},
 	"GAME": {
 		"TEXT": "Game",

@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import '../css/Search.css'
 import SearchResult from '../components/SearchResult';
 import eventBus from '../eventBus';
-import { i18n } from '../locales/i18n';
+import { format, i18n } from '../locales/i18n';
 
 /**
  * Search page, where the user can search for images of planets.
@@ -13,6 +13,7 @@ export default class Search extends PureComponent {
   /** Initial state */
   state = {
     loading: false,
+    searching: false,
     hasSearched: false,
     query: '',
   }
@@ -68,7 +69,7 @@ export default class Search extends PureComponent {
       console.error(`Something went wrong while fetching images using query "${search}".`, err);
     }
 
-    this.setState({ hasSearched: true, loading: false })
+    this.setState({ searching: false, hasSearched: true, loading: false })
   }
 
   /** Called when the search has changed */
@@ -82,7 +83,7 @@ export default class Search extends PureComponent {
       return
     }
 
-    this.setState({ loading: true })
+    this.setState({ loading: true, searching: true })
     if (this._loadingTimer) {
       clearTimeout(this._loadingTimer)
     }
@@ -104,18 +105,24 @@ export default class Search extends PureComponent {
         <img id='search-right-icon' draggable='false' src={require('../images/close.svg')} alt='Clear' onClick={this.state.query ? _ => this.onSearchChange('') : null} style={{ opacity: this.state.query ? 1 : 0, cursor: this.state.query ? 'pointer' : 'default' }} />
       </div>
 
-      { this.state.hasSearched
-        ? this.results.length > 0
-          ? <>
-            <p>{ i18n('SEARCH.FOUND').replace('{0}', this.results.length) }</p>
-            <div id='search-results-container'>
-              { this.results.map(result => <SearchResult key={result.data[0].nasa_id} result={result} />) }
+      { this.state.searching
+        ? <div id='search-results-found'>
+          { i18n('SEARCH.SEARCHING') }
+        </div>
+        : this.state.hasSearched
+          ? this.results.length > 0
+            ? <>
+              <div id='search-results-found'>
+                { format(i18n('SEARCH.FOUND'), this.results.length) }
+              </div>
+              <div id='search-results-container'>
+                { this.results.map(result => <SearchResult key={result.data[0].nasa_id} result={result} />) }
+              </div>
+            </>
+            : <div id='search-no-results'>
+              { i18n('SEARCH.NO_RESULTS') }
             </div>
-          </>
-          : <div id='search-no-results'>
-            { i18n('SEARCH.NO_RESULTS') }
-          </div>
-        : null
+          : null
       }
     </div>
   }

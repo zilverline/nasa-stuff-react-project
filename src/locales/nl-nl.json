@@ -5,9 +5,12 @@
 	"SEARCH": {
 		"TEXT": "Zoeken",
 		"SUBTEXT": "Zoek naar afbeeldingen uit de NASA-database.",
-		"ANYTHING": "Zoek naar iets",
+		"ANYTHING": "Zoek naar iets...",
+		"SEARCHING": "Zoeken...",
 		"NO_RESULTS": "Geen resultaten gevonden.",
-		"FOUND": "{0} resultaten gevonden."
+		"FOUND": "{0} resultaten gevonden.",
+		"EXPAND": "Uitbreiden",
+		"COLLAPSE": "Instorten"
 	},
 	"GAME": {
 		"TEXT": "Spel",

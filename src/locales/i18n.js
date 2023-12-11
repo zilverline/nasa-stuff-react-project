@@ -21,6 +21,20 @@ export function setLocale(name) {
 }
 
 /**
+ * Formats the given string with the given arguments.
+ * @param {string} value Value to replace placeholders in.
+ * @param {...any} args Values of each placeholder item.
+ * @returns {string} Formatted string.
+ */
+export function format(value, ...args) {
+  for (let idx = 0; idx < args.length; idx++) {
+    value = value.replace(`{${idx}}`, args[idx])
+  }
+
+  return value
+}
+
+/**
  * Uses the translation at the given key.
  * @param {string} key Key to use for translation.
  * @returns {string} Internationalized string.
