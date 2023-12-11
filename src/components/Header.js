@@ -85,8 +85,8 @@ export default class Header extends PureComponent {
       <div className='horizontal-spacer' />
 
       <div id='nav-buttons'>
-        <Button to='/search' icon={require('../images/search.svg')} text={i18n('TEXT.SEARCH')} isSelected={this.state.selected === 'search'} onClick={_ => this.setState({ selected: 'search' })} />
-        <Button to='/game' icon={require('../images/game.svg')} text={i18n('TEXT.GAME')} isSelected={this.state.selected === 'game'} onClick={_ => this.setState({ selected: 'game' })} />
+        <Button to='/search' icon={require('../images/search.svg')} text={i18n('SEARCH.TEXT')} isSelected={this.state.selected === 'search'} onClick={_ => this.setState({ selected: 'search' })} />
+        <Button to='/game' icon={require('../images/game.svg')} text={i18n('GAME.TEXT')} isSelected={this.state.selected === 'game'} onClick={_ => this.setState({ selected: 'game' })} />
       </div>
 
       { this.state.language === 'en-us'

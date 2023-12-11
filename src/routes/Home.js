@@ -31,11 +31,11 @@ export default class Home extends PureComponent {
   render() {
     return <div id='home-container'>
       <Link to='/search' onClick={_ => eventBus.send('page-change', { page: 'search' })}>
-        <Card icon={require('../images/search.svg')} text={i18n('TEXT.SEARCH')} subtext={i18n('TEXT.SEARCH_SUBTEXT')} />
+        <Card icon={require('../images/search.svg')} text={i18n('SEARCH.TEXT')} subtext={i18n('SEARCH.SUBTEXT')} />
       </Link>
 
       <Link to='/game' onClick={_ => eventBus.send('page-change', { page: 'game' })}>
-        <Card icon={require('../images/game.svg')} text={i18n('TEXT.GAME')} subtext={i18n('TEXT.GAME_SUBTEXT')} />
+        <Card icon={require('../images/game.svg')} text={i18n('GAME.TEXT')} subtext={i18n('GAME.SUBTEXT')} />
       </Link>
     </div>
   }

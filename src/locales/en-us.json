@@ -2,14 +2,19 @@
 	"TITLE": {
 		"TEXT": "NASA: The Game"
 	},
-	"TEXT": {
+	"SEARCH": {
+		"TEXT": "Search",
+		"SUBTEXT": "Search for images from the NASA database.",
+		"ANYTHING": "Search for anything",
+		"NO_RESULTS": "No results found.",
+		"FOUND": "Found {0} results."
+	},
+	"GAME": {
+		"TEXT": "Game",
+		"SUBTEXT": "Test your skills at guessing planets from images!",
 		"CORRECT": "Correct",
 		"CORRECT_TEXT": "Correct planet is",
 		"INCORRECT": "Incorrect",
-		"SEARCH": "Search",
-		"SEARCH_SUBTEXT": "Search for images from the NASA database.",
-		"GAME": "Game",
-		"GAME_SUBTEXT": "Test your skills at guessing planets from images!",
 		"PLAY_AGAIN": "Play Again"
 	},
 	"PLANETS": {

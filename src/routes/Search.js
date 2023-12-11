@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import '../css/Search.css'
 import SearchResult from '../components/SearchResult';
 import eventBus from '../eventBus';
+import { i18n } from '../locales/i18n';
 
 /**
  * Search page, where the user can search for images of planets.
@@ -37,7 +38,8 @@ export default class Search extends PureComponent {
     this.forceUpdate()
   }
 
-  async fetchImages() {
+  /** Fetches the results from the NASA API */
+  async fetchResults() {
     const search = this.state.query.trim()
     if (!search) {
       this.setState({ hasSearched: false })
@@ -67,14 +69,16 @@ export default class Search extends PureComponent {
     }
 
     this.setState({ hasSearched: true, loading: false })
-    console.log('== results', this.results)
   }
 
-  onSearchChange = evt => {
-    this.setState({ query: evt.target.value })
+  /** Called when the search has changed */
+  onSearchChange = query => {
+    this.setState({ query })
 
-    const search = evt.target.value.trim()
+    const search = query.trim()
     if (!search) {
+      this.results = []
+      this.setState({ hasSearched: false, loading: false })
       return
     }
 
@@ -87,27 +91,29 @@ export default class Search extends PureComponent {
     // finished typing
     this._loadingTimer = setTimeout(() => {
       this._loadingTimer = null
-      this.fetchImages()
+      this.fetchResults()
     }, 500)
   }
 
   /** Render a way for the user to search for a NASA image */
   render() {
     return <div id='search-container'>
-      <h1>Search the NASA image database</h1>
-      <input type='text' value={this.state.query} onChange={this.onSearchChange} />
+      <div id='search-input-container'>
+        <img id='search-left-icon' draggable='false' src={require('../images/search.svg')} alt='Search' />
+        <input id='search-input' type='text' value={this.state.query} placeholder={i18n('SEARCH.ANYTHING')} autoComplete='off' onChange={evt => this.onSearchChange(evt.target.value)} />
+        <img id='search-right-icon' draggable='false' src={require('../images/close.svg')} alt='Clear' onClick={this.state.query ? _ => this.onSearchChange('') : null} style={{ opacity: this.state.query ? 1 : 0, cursor: this.state.query ? 'pointer' : 'default' }} />
+      </div>
 
       { this.state.hasSearched
-        ? <div>
-            { this.results.length > 0
-              ? <>
-                <p>Found {this.results.length} results.</p>
-                <div id='search-results-container'>
-                  { this.results.map(result => <SearchResult key={result.data[0].nasa_id} result={result} />) }
-                </div>
-              </>
-              : <p>No results found.</p>
-            }
+        ? this.results.length > 0
+          ? <>
+            <p>{ i18n('SEARCH.FOUND').replace('{0}', this.results.length) }</p>
+            <div id='search-results-container'>
+              { this.results.map(result => <SearchResult key={result.data[0].nasa_id} result={result} />) }
+            </div>
+          </>
+          : <div id='search-no-results'>
+            { i18n('SEARCH.NO_RESULTS') }
           </div>
         : null
       }

@@ -171,19 +171,19 @@ export default class Game extends PureComponent {
     return <>
       <div id='guess-result-title' style={{ color: this.state.isCorrect ? '#25cb25' : '#d91212' }}>
         { this.state.isCorrect
-          ? i18n('TEXT.CORRECT')
-          : i18n('TEXT.INCORRECT')
+          ? i18n('GAME.CORRECT')
+          : i18n('GAME.INCORRECT')
         }
       </div>
 
       { this.state.isCorrect
         ? null
         : <div id='guess-incorrect-text'>
-          { i18n('TEXT.CORRECT_TEXT') } <img src={this.correct.icon} alt={this.correct.localized} /> <span id='guess-correct-name'>{ this.correct.localized }</span>
+          { i18n('GAME.CORRECT_TEXT') } <img src={this.correct.icon} alt={this.correct.localized} /> <span id='guess-correct-name'>{ this.correct.localized }</span>
         </div>
       }
 
-      <Option icon={require('../images/replay.svg')} text={i18n('TEXT.PLAY_AGAIN')} value={i18n('TEXT.PLAY_AGAIN')} useRawIcon={false} onSelect={_ => this.startGame()} />
+      <Option icon={require('../images/replay.svg')} text={i18n('GAME.PLAY_AGAIN')} value={i18n('GAME.PLAY_AGAIN')} useRawIcon={false} onSelect={_ => this.startGame()} />
     </>
   }
 

@@ -2,6 +2,37 @@
   display: flex;
   position: relative;
   flex-direction: column;
+  align-items: center;
+}
+
+#search-input-container {
+  display: flex;
+  gap: 10px;
+  width: 50%;
+  padding: 10px;
+  background-color: #000000;
+  border: 1px solid #FFFFFF;
+  align-items: center;
+}
+
+#search-left-icon {
+  width: 22px;
+  height: 22px;
+}
+
+#search-input {
+  width: 100%;
+  font-size: 16px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+#search-right-icon {
+  width: 22px;
+  height: 22px;
+  transition: opacity 0.4s ease
 }
 
 #search-results-container {
@@ -9,6 +40,11 @@
   flex-wrap: wrap;
   gap: 15px;
   align-items: center;
+}
+
+#search-no-results {
+  font-size: 20px;
+  margin-top: 30px;
 }
 
 p {
