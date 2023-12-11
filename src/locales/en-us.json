@@ -7,7 +7,9 @@
 		"CORRECT_TEXT": "Correct planet is",
 		"INCORRECT": "Incorrect",
 		"SEARCH": "Search",
+		"SEARCH_SUBTEXT": "Search for images from the NASA database.",
 		"GAME": "Game",
+		"GAME_SUBTEXT": "Test your skills at guessing planets from images!",
 		"PLAY_AGAIN": "Play Again"
 	},
 	"PLANETS": {

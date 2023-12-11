@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import '../css/Home.css';
 
 import Card from '../components/Card';
-import { i18n } from '../locales/i18n';
 import eventBus from '../eventBus';
+import { i18n } from '../locales/i18n';
 
 /**
  * Home page, which is the first page the user will see when opening the app.
@@ -30,12 +30,12 @@ export default class Home extends PureComponent {
   /** Render the home UI */
   render() {
     return <div id='home-container'>
-      <Link to='/search'>
-        <Card icon={require('../images/search.svg')} text={i18n('TEXT.SEARCH')} subtext='Search for images from the NASA database.' />
+      <Link to='/search' onClick={_ => eventBus.send('page-change', { page: 'search' })}>
+        <Card icon={require('../images/search.svg')} text={i18n('TEXT.SEARCH')} subtext={i18n('TEXT.SEARCH_SUBTEXT')} />
       </Link>
 
-      <Link to='/game'>
-        <Card icon={require('../images/game.svg')} text={i18n('TEXT.GAME')} subtext='Find out how good you are at guessing planets from images!' />
+      <Link to='/game' onClick={_ => eventBus.send('page-change', { page: 'game' })}>
+        <Card icon={require('../images/game.svg')} text={i18n('TEXT.GAME')} subtext={i18n('TEXT.GAME_SUBTEXT')} />
       </Link>
     </div>
   }

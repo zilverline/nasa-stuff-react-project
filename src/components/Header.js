@@ -42,6 +42,23 @@ export default class Header extends PureComponent {
     } else if (path === '/game') {
       this.setState({ selected: 'game' })
     }
+
+    // Listen for any page redirects
+    eventBus.addListener('page-change', this.onPageChange)
+  }
+
+  /** Called before component is unloaded */
+  componentWillUnmount() {
+    eventBus.removeListener('page-change', this.onPageChange)
+  }
+
+  /** Called when the page has been changed */
+  onPageChange = data => {
+    if (!data.page) {
+      return
+    }
+
+    this.setState({ selected: data.page })
   }
 
   /** Called when the user clicks on the language button */

@@ -7,7 +7,9 @@
 		"CORRECT_TEXT": "Juiste planeet is",
 		"INCORRECT": "U hebt ongelijk",
 		"SEARCH": "Zoeken",
+		"SEARCH_SUBTEXT": "Zoek naar afbeeldingen uit de NASA-database.",
 		"GAME": "Spel",
+		"GAME_SUBTEXT": "Test u vaardigheden bij het raden van planeten uit afbeeldingen!",
 		"PLAY_AGAIN": "Speel Opnieuw"
 	},
 	"PLANETS": {
