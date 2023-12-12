@@ -1,6 +1,6 @@
 import locales from '.';
 
-let localeName = 'en-us';
+let localeName = 'en-uk';
 
 /**
  * Sets the locale to use for translations.
@@ -40,7 +40,7 @@ export function format(value, ...args) {
  * @returns {string} Internationalized string.
  */
 export function i18n(key) {
-  let value = locales[localeName] || locales['en-us'];
+  let value = locales[localeName] || locales['en-uk'];
 
   // Traverse '.' to get value
   for (let keyPart of key.split('.')) {

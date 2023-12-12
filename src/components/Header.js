@@ -16,7 +16,7 @@ export default class Header extends PureComponent {
   /** Initial state */
   state = {
     selected: '',
-    language: 'en-us',
+    language: 'en-uk',
   }
 
   /** Called after first render */
@@ -24,7 +24,7 @@ export default class Header extends PureComponent {
     const language = localStorage.getItem('last-language');
 
     // Use the last selected language on startup
-    if (language === 'en-us' || language === 'nl-nl') {
+    if (language === 'en-uk' || language === 'nl-nl') {
       this.setState({ language });
       setLocale(language);
       eventBus.send('lang-change', language);
@@ -63,7 +63,7 @@ export default class Header extends PureComponent {
 
   /** Called when the user clicks on the language button */
   onLanguageClick = _ => {
-    const language = this.state.language === 'en-us' ? 'nl-nl' : 'en-us';
+    const language = this.state.language === 'en-uk' ? 'nl-nl' : 'en-uk';
     this.setState({ language });
 
     setLocale(language);
@@ -89,7 +89,7 @@ export default class Header extends PureComponent {
         <Button to='/game' icon={require('../images/game.svg')} text={i18n('GAME.TEXT')} isSelected={this.state.selected === 'game'} onClick={_ => this.setState({ selected: 'game' })} />
       </div>
 
-      { this.state.language === 'en-us'
+      { this.state.language === 'en-uk'
         ? <LanguageSelector alt='English' text='EN' icon={require('../images/british-flag.svg')} onChange={this.onLanguageClick} />
         : <LanguageSelector alt='Nederlands' text='NL' icon={require('../images/dutch-flag.svg')} onChange={this.onLanguageClick} />
       }

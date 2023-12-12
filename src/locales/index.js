@@ -1,9 +1,9 @@
-import en from './en-us.json';
+import en from './en-uk.json';
 import nl from './nl-nl.json';
 
 // Supported locales
 const locales = {
-  'en-us': en,
+  'en-uk': en,
   'nl-nl': nl,
 };
 
