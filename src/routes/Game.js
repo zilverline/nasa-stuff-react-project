@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { i18n } from '../locales/i18n';
 
-import '../css/Game.css'
+import '../css/Game.css';
 import Option from '../components/Option';
 import eventBus from '../eventBus';
 
@@ -24,7 +24,7 @@ export default class Game extends PureComponent {
     name: 'Earth',
     icon: require('../images/earth.svg'),
     get localized() {
-      return i18n('PLANETS.EARTH')
+      return i18n('PLANETS.EARTH');
     },
   }
 
@@ -34,74 +34,74 @@ export default class Game extends PureComponent {
       name: 'Mercury',
       icon: require('../images/mercury.svg'),
       get localized() {
-        return i18n('PLANETS.MERCURY')
+        return i18n('PLANETS.MERCURY');
       },
     },
     {
       name: 'Venus',
       icon: require('../images/venus.svg'),
       get localized() {
-        return i18n('PLANETS.VENUS')
+        return i18n('PLANETS.VENUS');
       },
     },
     {
       name: 'Earth',
       icon: require('../images/earth.svg'),
       get localized() {
-        return i18n('PLANETS.EARTH')
+        return i18n('PLANETS.EARTH');
       },
     },
     {
       name: 'Mars',
       icon: require('../images/mars.svg'),
       get localized() {
-        return i18n('PLANETS.MARS')
+        return i18n('PLANETS.MARS');
       },
     },
     {
       name: 'Jupiter',
       icon: require('../images/jupiter.svg'),
       get localized() {
-        return i18n('PLANETS.JUPITER')
+        return i18n('PLANETS.JUPITER');
       },
     },
     {
       name: 'Saturn',
       icon: require('../images/saturn.svg'),
       get localized() {
-        return i18n('PLANETS.SATURN')
+        return i18n('PLANETS.SATURN');
       },
     },
     {
       name: 'Uranus',
       icon: require('../images/uranus.svg'),
       get localized() {
-        return i18n('PLANETS.URANUS')
+        return i18n('PLANETS.URANUS');
       },
     },
     {
       name: 'Neptune',
       icon: require('../images/neptune.svg'),
       get localized() {
-        return i18n('PLANETS.NEPTUNE')
+        return i18n('PLANETS.NEPTUNE');
       },
-    }
+    },
   ]
 
   /** Called after first render */
   componentDidMount() {
-    eventBus.addListener('lang-change', this.onLanguageChange)
+    eventBus.addListener('lang-change', this.onLanguageChange);
     this.startGame();
   }
 
   /** Called after first mount */
   componentWillUnmount() {
-    eventBus.removeListener('lang-change', this.onLanguageChange)
+    eventBus.removeListener('lang-change', this.onLanguageChange);
   }
 
   /** Called when we change the language */
   onLanguageChange = _ => {
-    this.forceUpdate()
+    this.forceUpdate();
   }
 
   /** Starts the game by choosing a planet image */
@@ -114,9 +114,9 @@ export default class Game extends PureComponent {
       name: planet.name,
       icon: planet.icon,
       get localized() {
-        return i18n('PLANETS.' + planet.name.toUpperCase())
+        return i18n('PLANETS.' + planet.name.toUpperCase());
       },
-    }
+    };
 
     try {
       const response = await fetch(`https://images-api.nasa.gov/search?q=${planet.name}`);
@@ -144,9 +144,9 @@ export default class Game extends PureComponent {
         name: 'Earth',
         icon: require('../images/earth.svg'),
         get localized() {
-          return i18n('PLANETS.EARTH')
+          return i18n('PLANETS.EARTH');
         },
-      }
+      };
       this.setState({ image: require('../images/earth.jpg') });
       console.error('Something went wrong while finding a planet image.', err);
     }
@@ -156,7 +156,7 @@ export default class Game extends PureComponent {
 
   /** Called when the user has guess a planet */
   onGuessSelect = planet => {
-    this.setState({ hasGuessed: true, isCorrect: planet === this.correct.name || planet === this.correct.localized })
+    this.setState({ hasGuessed: true, isCorrect: planet === this.correct.name || planet === this.correct.localized });
   }
 
   /** Renders an intermediate loading UI while the image is being fetched */

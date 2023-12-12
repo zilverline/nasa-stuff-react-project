@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import '../css/LanguageSelector.css'
+import '../css/LanguageSelector.css';
 
 /**
  * Allows the user to change between languages.
@@ -10,10 +10,10 @@ export default class LanguageSelector extends PureComponent {
   /** Called when the user has requested to change the language */
   onLanguageClick = _ => {
     if (!this.props.onChange || typeof this.props.onChange !== 'function') {
-      return
+      return;
     }
 
-    this.props.onChange()
+    this.props.onChange();
   }
 
   /** Renders the language selector UI */

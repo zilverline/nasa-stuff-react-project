@@ -14,17 +14,17 @@ export default class Home extends PureComponent {
 
   /** Called after first mount */
   componentDidMount() {
-    eventBus.addListener('lang-change', this.onLanguageChange)
+    eventBus.addListener('lang-change', this.onLanguageChange);
   }
 
   /** Called after first mount */
   componentWillUnmount() {
-    eventBus.removeListener('lang-change', this.onLanguageChange)
+    eventBus.removeListener('lang-change', this.onLanguageChange);
   }
 
   /** Called when we change the language */
   onLanguageChange = _ => {
-    this.forceUpdate()
+    this.forceUpdate();
   }
 
   /** Render the home UI */

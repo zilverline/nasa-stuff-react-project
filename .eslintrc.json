@@ -1,0 +1,61 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "standard",
+        "plugin:react/recommended"
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "ignorePatterns": [
+        ".github",
+        "dist",
+        "public",
+        "node_modules",
+        "webpack.config.js"
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "globals": {
+        "test": true
+    },
+    "rules": {
+        "react/prop-types": "off",
+        "react/no-unescaped-entities": "off",
+        "promise/param-names": "off",
+        "indent": [ "error", 2, { "SwitchCase": 1 } ],
+        "no-unused-vars": [ "warn", { "argsIgnorePattern": "^(_|event|evt|e)$", "varsIgnorePattern": "^_$" } ],
+        "curly": [ "error", "all" ],
+        "brace-style": [ "error", "1tbs", { "allowSingleLine": false } ],
+        "no-var": "error",
+        "no-unreachable": "error",
+        "comma-dangle": "off",
+        "semi": "off",
+        "quotes": "off",
+        "new-parens": "off",
+        "space-before-function-paren": "off",
+        "no-new": "off",
+        "padded-blocks": "off",
+        "eqeqeq": "off",
+        "prefer-const": "off",
+        "array-bracket-spacing": "off",
+        "object-shorthand": "off",
+        "no-useless-return": "off",
+        "no-return-assign": "off",
+        "new-cap": "off",
+        "no-throw-literal": "off",
+        "dot-notation": "off",
+        "no-useless-computed-key": "off"
+    }
+}

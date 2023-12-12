@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-import '../css/Header.css'
+import '../css/Header.css';
 import Button from './Button';
 import LanguageSelector from './LanguageSelector';
 import eventBus from '../eventBus';
@@ -25,53 +25,53 @@ export default class Header extends PureComponent {
 
     // Use the last selected language on startup
     if (language === 'en-us' || language === 'nl-nl') {
-      this.setState({ language })
-      setLocale(language)
-      eventBus.send('lang-change', language)
+      this.setState({ language });
+      setLocale(language);
+      eventBus.send('lang-change', language);
 
       // Send another one just so that other components have enough time to render
       // and update their text
-      setTimeout(() => eventBus.send('lang-change', language), 100)
+      setTimeout(() => eventBus.send('lang-change', language), 100);
     }
 
     // Ensure that when a user navigates directly to a page, the correct button
     // is selected
-    const path = window.location.pathname
+    const path = window.location.pathname;
     if (path === '/search') {
-      this.setState({ selected: 'search' })
+      this.setState({ selected: 'search' });
     } else if (path === '/game') {
-      this.setState({ selected: 'game' })
+      this.setState({ selected: 'game' });
     }
 
     // Listen for any page redirects
-    eventBus.addListener('page-change', this.onPageChange)
+    eventBus.addListener('page-change', this.onPageChange);
   }
 
   /** Called before component is unloaded */
   componentWillUnmount() {
-    eventBus.removeListener('page-change', this.onPageChange)
+    eventBus.removeListener('page-change', this.onPageChange);
   }
 
   /** Called when the page has been changed */
   onPageChange = data => {
     if (!data.page) {
-      return
+      return;
     }
 
-    this.setState({ selected: data.page })
+    this.setState({ selected: data.page });
   }
 
   /** Called when the user clicks on the language button */
   onLanguageClick = _ => {
-    const language = this.state.language === 'en-us' ? 'nl-nl' : 'en-us'
-    this.setState({ language })
+    const language = this.state.language === 'en-us' ? 'nl-nl' : 'en-us';
+    this.setState({ language });
 
-    setLocale(language)
-    eventBus.send('lang-change', { language })
+    setLocale(language);
+    eventBus.send('lang-change', { language });
 
     // Keep track of last selected language, so user does not need to select each
     // time they reload the page
-    localStorage.setItem('last-language', language)
+    localStorage.setItem('last-language', language);
   }
 
   /** Render the header navigation bar */

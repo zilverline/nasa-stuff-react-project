@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import '../css/SearchResult.css'
+import '../css/SearchResult.css';
 import { i18n } from '../locales/i18n';
 
 /**
@@ -15,12 +15,12 @@ export default class SearchResult extends PureComponent {
 
   /** Render the search result UI */
   render() {
-    const result = this.props.result
-    const data = result.data[0]
-    const link = result.links[0]
-    const href = link.href
-    const title = data.title
-    const description = data.description
+    const result = this.props.result;
+    const data = result.data[0];
+    const link = result.links[0];
+    const href = link.href;
+    const title = data.title;
+    const description = data.description;
 
     return <div className='result-container'>
       <img src={href} alt={title} />

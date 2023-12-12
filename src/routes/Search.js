@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 
-import '../css/Search.css'
+import '../css/Search.css';
 import SearchResult from '../components/SearchResult';
 import eventBus from '../eventBus';
 import { format, i18n } from '../locales/i18n';
@@ -26,25 +26,25 @@ export default class Search extends PureComponent {
 
   /** Called after first mount */
   componentDidMount() {
-    eventBus.addListener('lang-change', this.onLanguageChange)
+    eventBus.addListener('lang-change', this.onLanguageChange);
   }
 
   /** Called after first mount */
   componentWillUnmount() {
-    eventBus.removeListener('lang-change', this.onLanguageChange)
+    eventBus.removeListener('lang-change', this.onLanguageChange);
   }
 
   /** Called when we change the language */
   onLanguageChange = _ => {
-    this.forceUpdate()
+    this.forceUpdate();
   }
 
   /** Fetches the results from the NASA API */
   async fetchResults() {
-    const search = this.state.query.trim()
+    const search = this.state.query.trim();
     if (!search) {
-      this.setState({ hasSearched: false })
-      return
+      this.setState({ hasSearched: false });
+      return;
     }
 
     try {
@@ -63,37 +63,37 @@ export default class Search extends PureComponent {
       }
 
       // Remove any results that have no images
-      this.results = json.collection.items.filter(item => !!item?.links?.[0])
+      this.results = json.collection.items.filter(item => !!item?.links?.[0]);
     } catch (err) {
-      this.results = []
+      this.results = [];
       console.error(`Something went wrong while fetching images using query "${search}".`, err);
     }
 
-    this.setState({ searching: false, hasSearched: true, loading: false })
+    this.setState({ searching: false, hasSearched: true, loading: false });
   }
 
   /** Called when the search has changed */
   onSearchChange = query => {
-    this.setState({ query })
+    this.setState({ query });
 
-    const search = query.trim()
+    const search = query.trim();
     if (!search) {
-      this.results = []
-      this.setState({ hasSearched: false, loading: false })
-      return
+      this.results = [];
+      this.setState({ hasSearched: false, loading: false });
+      return;
     }
 
-    this.setState({ loading: true, searching: true })
+    this.setState({ loading: true, searching: true });
     if (this._loadingTimer) {
-      clearTimeout(this._loadingTimer)
+      clearTimeout(this._loadingTimer);
     }
 
     // Start a timer so that the search only happens after the user has
     // finished typing
     this._loadingTimer = setTimeout(() => {
-      this._loadingTimer = null
-      this.fetchResults()
-    }, 500)
+      this._loadingTimer = null;
+      this.fetchResults();
+    }, 500);
   }
 
   /** Render a way for the user to search for a NASA image */

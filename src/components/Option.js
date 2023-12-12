@@ -24,7 +24,7 @@ export default class Option extends PureComponent {
 
   /** Renders the option UI */
   render() {
-    const useRawIcon = this.props.useRawIcon ?? true
+    const useRawIcon = this.props.useRawIcon ?? true;
 
     return <button className='option-container' onClick={this.onSelect} onPointerOver={_ => this.setState({ isHovering: true })} onPointerOut={_ => this.setState({ isHovering: false })}>
       { this.props.icon

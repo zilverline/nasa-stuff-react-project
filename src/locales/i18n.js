@@ -1,6 +1,6 @@
-import locales from "."
+import locales from '.';
 
-let localeName = "en-us"
+let localeName = 'en-us';
 
 /**
  * Sets the locale to use for translations.
@@ -8,16 +8,16 @@ let localeName = "en-us"
  */
 export function setLocale(name) {
   if (!name || typeof name != 'string') {
-    console.warn('Failed to set locale, no name given.')
-    return
+    console.warn('Failed to set locale, no name given.');
+    return;
   }
 
-  name = name.toLowerCase()
+  name = name.toLowerCase();
   if (name === 'nl-be') {
-    name = 'nl-nl'
+    name = 'nl-nl';
   }
 
-  localeName = name
+  localeName = name;
 }
 
 /**
@@ -28,10 +28,10 @@ export function setLocale(name) {
  */
 export function format(value, ...args) {
   for (let idx = 0; idx < args.length; idx++) {
-    value = value.replace(`{${idx}}`, args[idx])
+    value = value.replace(`{${idx}}`, args[idx]);
   }
 
-  return value
+  return value;
 }
 
 /**
@@ -40,17 +40,17 @@ export function format(value, ...args) {
  * @returns {string} Internationalized string.
  */
 export function i18n(key) {
-  let value = locales[localeName] || locales['en-us']
+  let value = locales[localeName] || locales['en-us'];
 
-  // Traverse "." to get value
-  for (let keyPart of key.split(".")) {
-    value = value[keyPart]
+  // Traverse '.' to get value
+  for (let keyPart of key.split('.')) {
+    value = value[keyPart];
 
     // No value found
     if (value == null) {
-      return key
+      return key;
     }
   }
 
-  return value
+  return value;
 }
