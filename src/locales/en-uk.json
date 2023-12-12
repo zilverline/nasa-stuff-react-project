@@ -1,0 +1,33 @@
+{
+	"TITLE": {
+		"TEXT": "NASA: The Game"
+	},
+	"SEARCH": {
+		"TEXT": "Search",
+		"SUBTEXT": "Search for images from the NASA database.",
+		"ANYTHING": "Search for anything...",
+		"SEARCHING": "Searching...",
+		"NO_RESULTS": "No results found.",
+		"FOUND": "Found {0} results.",
+		"EXPAND": "Expand",
+		"COLLAPSE": "Collapse"
+	},
+	"GAME": {
+		"TEXT": "Game",
+		"SUBTEXT": "Test your skills at guessing planets from images!",
+		"CORRECT": "Correct",
+		"CORRECT_TEXT": "Correct planet is",
+		"INCORRECT": "Incorrect",
+		"PLAY_AGAIN": "Play Again"
+	},
+	"PLANETS": {
+		"MERCURY": "Mercury",
+		"VENUS": "Venus",
+		"EARTH": "Earth",
+		"MARS": "Mars",
+		"JUPITER": "Jupiter",
+		"SATURN": "Saturn",
+		"URANUS": "Uranus",
+		"NEPTUNE": "Neptune"
+	}
+}

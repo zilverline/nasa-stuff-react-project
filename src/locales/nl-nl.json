@@ -1,0 +1,33 @@
+{
+	"TITLE": {
+		"TEXT": "NASA: Het Spel"
+	},
+	"SEARCH": {
+		"TEXT": "Zoeken",
+		"SUBTEXT": "Zoek naar afbeeldingen uit de NASA-database.",
+		"ANYTHING": "Zoek naar iets...",
+		"SEARCHING": "Zoeken...",
+		"NO_RESULTS": "Geen resultaten gevonden.",
+		"FOUND": "{0} resultaten gevonden.",
+		"EXPAND": "Uitbreiden",
+		"COLLAPSE": "Instorten"
+	},
+	"GAME": {
+		"TEXT": "Spel",
+		"SUBTEXT": "Test u vaardigheden bij het raden van planeten uit afbeeldingen!",
+		"CORRECT": "U hebt gelijk",
+		"CORRECT_TEXT": "Juiste planeet is",
+		"INCORRECT": "U hebt ongelijk",
+		"PLAY_AGAIN": "Speel Opnieuw"
+	},
+	"PLANETS": {
+		"MERCURY": "Mercurius",
+		"VENUS": "Venus",
+		"EARTH": "Aarde",
+		"MARS": "Mars",
+		"JUPITER": "Jupiter",
+		"SATURN": "Saturnus",
+		"URANUS": "Uranus",
+		"NEPTUNE": "Neptunus"
+	}
+}
