@@ -1,24 +1,95 @@
-## Notes as I make this project real
+# Nasa Image Directory
 
-First iteration of this project (March 2019): I made a search app where the user can enter a term and the NASA API will present a list of results on cards.
+## Overview
 
-I was learning about components, state and props before this project and the hardest parts of building this as my first React app were: the container component and how the components all relate to each other through it, and creating the cards through mapping the images in the search state.
+This application, developed as a learning project in React, offers users a unique and engaging way to explore the vast universe through the NASA API. Initially conceptualized in March 2019, the app has grown from a simple search tool into an interactive educational platform featuring multiple games based on NASA's rich database of celestial images and data.
 
-This was challenging because to handle the errors where a field in the json was empty, I needed to gracefully still show something. I decided to have a default image shown in case of no image results. I also needed to let the user know when their search term didn't return anything.
+## Features
 
-I will make a game where a user is presented with two images from the NASA API and they pick the correct one matching the name they see.
+### Search Functionality
 
-I will make a game where a description of the object is given and the image of some items and the user has to match the image and description.
+#### NASA Image Search:
 
-Another idea: a game where four objects are given, and they are two matching sets. The user has to match the items with each other.
+Users can enter a term, and the app leverages the NASA API to present a list of relevant results displayed on interactive cards.
 
-The challenge here is going to be position randomization.
+#### Error Handling and Default Images:
 
+Graceful handling of empty fields in the JSON response. If an image is not available, a default image is displayed. Users are also informed when their search terms yield no results.
+
+### Interactive Games
+
+#### Image Matching Game:
+
+Users are presented with two images and must select the one that matches the given name.
+
+#### Description Matching Game:
+
+A game where users are given a description and multiple images. The challenge is to match the image with its description.
+
+#### Pair Matching Game
+
+Users are shown four objects, forming two matching sets. The task is to correctly pair the objects with each other.
+
+### Technical Highlights
+
+#### React Components:
+
+The application is built using React components, emphasizing the learning and implementation of state and props.
+
+#### Container Component:
+
+Handling the complex relationships between different components through a central container component.
+
+#### Dynamic Rendering:
+
+Utilizes mapping to dynamically create cards based on the images retrieved from the NASA API search results.
+
+#### Error Handling and User Feedback:
+
+Implements sophisticated error handling to manage empty fields in API responses and enhance user experience by providing feedback on search results.
+
+### TypeScript Integration
+
+#### Type Safety and Development Efficiency
+
+The application's development was enhanced by integrating TypeScript, providing type safety and reducing runtime errors. TypeScript's static type-checking feature significantly improved code reliability and maintainability.
+TypeScript's rich IDE support and auto-completion capabilities streamlined the development process, making it faster and more efficient.
+
+#### Improved Collaboration and Code Quality
+
+The use of TypeScript in the project also facilitated better collaboration among developers. The self-documenting nature of types made the codebase more understandable and accessible to new contributors.
+TypeScript's compatibility with the latest JavaScript features ensured that the application could leverage modern development practices while maintaining a high standard of code quality.
+
+### Testing
+
+#### Testing Strategy
+
+Comprehensive testing was implemented using a combination of Jest, Testing Library, and Mock Service Worker (MSW).
+Jest was used for its powerful and efficient testing framework compatible with React applications.
+Testing Library provided user-centric tests, ensuring that the app functions correctly from the user's perspective.
+MSW was employed to intercept and mock HTTP requests, enabling us to test the app's response to various API scenarios without relying on live API calls.
+
+#### Test Coverage
+
+##### Unit Tests:
+
+Focused on individual components, ensuring that each one behaves as expected in isolation.
+
+##### Integration Tests:
+
+Tested interactions between components and their combined behavior to verify that the app's features work together seamlessly.
+
+##### Mock API Responses:
+
+Simulated various API responses to test the app's robustness and error handling capabilities, including scenarios with no results, default images, and network failures.
+
+### Acknowledgements
+
+This project was an endeavor to deepen my understanding of React and to explore the possibilities of integrating APIs into web applications. It reflects a journey from the basics of component interaction to the creation of a multifaceted, user-engaging app. Special thanks to NASA for providing an open API that serves as a window to the universe.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
-
 
 In the project directory first install all dependencies:
 
@@ -48,6 +119,10 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run deploy`
+
+Will create a new branch with an optimized production build and will push it to the remote repository in github. This branch then will be the basis for the app to be published in github pages in the url specified as "homepage" in package.json
 
 ### `npm run eject`
 
