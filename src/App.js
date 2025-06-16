@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import $ from 'jquery'
 
 import Game from './components/Game'
@@ -34,18 +34,19 @@ export default class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <Route exact path="/" component={MainContainer} />
-
-            <Route exact path="/game" component={Game} />
-
-            <Route
-             path="/search"
-             render={(props) => <SearchForm {...props} fetchImages={this.fetchImages} />}
-            />
-            <Route
-             path="/search"
-             render={(props) => <SearchResults {...props} getResults={this.state.images} />}
-            />
+            <Routes>
+              <Route path="/" element={<MainContainer />} />
+              <Route path="/game" element={<Game />} />
+              <Route
+                  path="/search"
+                  element={
+                    <>
+                      <SearchForm fetchImages={this.fetchImages} />
+                      <SearchResults getResults={this.state.images} />
+                    </>
+                  }
+              />
+            </Routes>
           </div>
         </BrowserRouter>
       )
